@@ -2,10 +2,10 @@
 CFLAGS = -g -Wall -O2 -I . -MMD
 
 # Linker flags go here.
-LDFLAGS = -lpthread -lcomedi -g -lm
+LDFLAGS = -lm -lpthread -lcomedi -g
 
 # list of sources
-ELEVSRC = elev.c io.c main.c
+ELEVSRC = elev.c io.c main.c queue.c car.c
 
 # program executable file name.
 TARGET = heis
@@ -21,7 +21,7 @@ ELEVOBJ = $(ELEVSRC:.c=.o)
 
 # rule to link the program
 $(TARGET): $(ELEVOBJ)
-	gcc $^ -o $@ $(LDFLAGS)
+	gcc $(LDFLAGS) $^ -o $@
 
 # Compile: create object files from C source files.
 %.o : %.c
